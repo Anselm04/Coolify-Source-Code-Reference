@@ -2,7 +2,7 @@
 
 Independent research snapshot of [Coolify](https://github.com/coollabsio/coolify) for studying application deployment, containers, environment and secret management, deployment orchestration and operational recovery in TrillionAI AppForge and Manager.
 
-## Source provenance
+## Verified security-filtered source snapshot
 
 - Original upstream repository: `coollabsio/coolify`
 - Pinned upstream commit: `93c7e53e9f07bfdb1c776899cb2e559e5a49aa34`
@@ -11,7 +11,7 @@ Independent research snapshot of [Coolify](https://github.com/coollabsio/coolify
 - Original source files stored under `upstream/`
 - [GitHub Actions source import and verification](https://github.com/Anselm04/Coolify-Source-Code-Reference/actions/workflows/import-coolify-source.yml)
 
-**The snapshot is only considered verified once GitHub Actions confirms the remote `upstream/` tree matches the pinned upstream tree.** Git-tracked snapshots are not the full commit history, private infrastructure, independently downloaded Git LFS payloads or external submodules.
+**GitHub Actions verification passed.** The archive retains **5,452 of 5,500** upstream Git-tracked files, excluding **48 files** containing private-key material or identified by GitHub push protection. The filtered Git subtree is `0c4275fa9feaf5eb8e74ad782e51762d82003022`. [View the successful verification run](https://github.com/Anselm04/Coolify-Source-Code-Reference/actions/runs/43540165602). The filtered tree differs intentionally from the original upstream tree. Git-tracked snapshots are not the full commit history, private infrastructure, independently downloaded Git LFS payloads or external submodules.
 
 ## Original licence and attribution
 
