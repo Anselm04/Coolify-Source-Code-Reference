@@ -1,0 +1,86 @@
+{
+  "source": "https://github.com/coollabsio/coolify.git",
+  "commit": "93c7e53e9f07bfdb1c776899cb2e559e5a49aa34",
+  "number_of_original_workflow_files": 13,
+  "original_ci_is_disabled": true,
+  "files": [
+    {
+      "upstream_path": ".github/workflows/actions.lock",
+      "reference_path": "upstream-workflow-snapshots/coolify/.github/workflows/actions.lock",
+      "git_blob": "3fe234676e8c9580f0bbdba0a4baf728c8910bbc",
+      "original_mode": "100644"
+    },
+    {
+      "upstream_path": ".github/workflows/build.yaml",
+      "reference_path": "upstream-workflow-snapshots/coolify/.github/workflows/build.yaml",
+      "git_blob": "10c0af64e3c12290e19213b72df969da62762d5c",
+      "original_mode": "100644"
+    },
+    {
+      "upstream_path": ".github/workflows/clean-manifests.yaml",
+      "reference_path": "upstream-workflow-snapshots/coolify/.github/workflows/clean-manifests.yaml",
+      "git_blob": "70c301fbf986ca7f6744983961888803d12fd566",
+      "original_mode": "100644"
+    },
+    {
+      "upstream_path": ".github/workflows/lock-threads.yaml",
+      "reference_path": "upstream-workflow-snapshots/coolify/.github/workflows/lock-threads.yaml",
+      "git_blob": "aa8c8912e35df333a4befd2a3eea756193909104",
+      "original_mode": "100644"
+    },
+    {
+      "upstream_path": ".github/workflows/main.yaml",
+      "reference_path": "upstream-workflow-snapshots/coolify/.github/workflows/main.yaml",
+      "git_blob": "a6c9d1ccc36caf90e33ddcd00e14f5ceb7982713",
+      "original_mode": "100644"
+    },
+    {
+      "upstream_path": ".github/workflows/merge-forward.yaml",
+      "reference_path": "upstream-workflow-snapshots/coolify/.github/workflows/merge-forward.yaml",
+      "git_blob": "9d948ea118c20d414e9ba280e7c3c448d63c2142",
+      "original_mode": "100644"
+    },
+    {
+      "upstream_path": ".github/workflows/nightly.yaml",
+      "reference_path": "upstream-workflow-snapshots/coolify/.github/workflows/nightly.yaml",
+      "git_blob": "63f8427b582243b7ca17f8d1a9d6f917fac3312c",
+      "original_mode": "100644"
+    },
+    {
+      "upstream_path": ".github/workflows/pr-quality.yaml",
+      "reference_path": "upstream-workflow-snapshots/coolify/.github/workflows/pr-quality.yaml",
+      "git_blob": "878b453ee27b86a08f4b43479accac7c000882d7",
+      "original_mode": "100644"
+    },
+    {
+      "upstream_path": ".github/workflows/pull-request.yaml",
+      "reference_path": "upstream-workflow-snapshots/coolify/.github/workflows/pull-request.yaml",
+      "git_blob": "92f9bbe24d4789cf02556e0d36be6069a7756be3",
+      "original_mode": "100644"
+    },
+    {
+      "upstream_path": ".github/workflows/release.yaml",
+      "reference_path": "upstream-workflow-snapshots/coolify/.github/workflows/release.yaml",
+      "git_blob": "1190f708a8eccb4f2f50dc52d103ed580fd38ebe",
+      "original_mode": "100644"
+    },
+    {
+      "upstream_path": ".github/workflows/request-docs-update.yaml",
+      "reference_path": "upstream-workflow-snapshots/coolify/.github/workflows/request-docs-update.yaml",
+      "git_blob": "03db87b200366a836fc4ceaab2e0662c15086ca0",
+      "original_mode": "100644"
+    },
+    {
+      "upstream_path": ".github/workflows/stale.yaml",
+      "reference_path": "upstream-workflow-snapshots/coolify/.github/workflows/stale.yaml",
+      "git_blob": "5484314ebd2a60327979e2ca9e7c3b258c446b89",
+      "original_mode": "100644"
+    },
+    {
+      "upstream_path": ".github/workflows/tmp-remove-arch-tags.yaml",
+      "reference_path": "upstream-workflow-snapshots/coolify/.github/workflows/tmp-remove-arch-tags.yaml",
+      "git_blob": "be07f7b57694414c3fb3d7d11d3eae263cc662fe",
+      "original_mode": "100644"
+    }
+  ]
+}
