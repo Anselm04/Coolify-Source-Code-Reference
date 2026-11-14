@@ -72,6 +72,27 @@ jobs:
             tests/Feature/TerminalAuthRoutesAuthorizationTest.php; do
             git update-index --force-remove -- "upstream/$file"
           done
+          # Additional SSH-key-bearing fixture paths flagged by GitHub.
+          for file in \
+            database/factories/PrivateKeyFactory.php \
+            tests/Feature/ApplicationSourceLocalhostKeyTest.php \
+            tests/Feature/ServerSettingsAuditTest.php \
+            tests/Feature/VultrServerLifecycleTest.php \
+            tests/Unit/VultrDeleteServerTest.php; do
+            git update-index --force-remove -- "upstream/$file"
+          done
+          # Also exclude other files with PEM private-key headers.
+          git grep -l -I \
+            -e 'BEGIN OPENSSH PRIVATE KEY' \
+            -e 'BEGIN RSA PRIVATE KEY' \
+            -e 'BEGIN EC PRIVATE KEY' \
+            -e 'BEGIN DSA PRIVATE KEY' \
+            -e 'BEGIN PRIVATE KEY' \
+            93c7e53e9f07bfdb1c776899cb2e559e5a49aa34 -- 2>/dev/null \
+            | sed 's/^[^:]*://' > ../PRIVATE_KEY_PATHS || true
+          while IFS= read -r file; do
+            [ -n "$file" ] && git update-index --force-remove -- "upstream/$file"
+          done < ../PRIVATE_KEY_PATHS
           IMPORT_TREE="$(git write-tree)"
           SUBTREE="$(git rev-parse "$IMPORT_TREE:upstream")"
           test "$SUBTREE" != "$UPSTREAM_TREE"
@@ -109,5 +130,5 @@ jobs:
           echo "Upstream source commit: $(cat ../UPSTREAM_COMMIT)"
           echo "Upstream tracked-file count: $(cat ../UPSTREAM_TRACKED_FILE_COUNT)"
           echo "Retained tracked-file count: $(git ls-tree -r --name-only FETCH_HEAD:upstream | wc -l)"
-          echo "Five SSH-key-bearing fixture and seeder files excluded"
+          echo "Known SSH-key-bearing fixtures and any further PEM-bearing files excluded"
           echo "Imported branch: coolify-upstream-snapshot"
