@@ -1,4 +1,4 @@
-name: Import Coolify complete source snapshot
+name: Import Coolify security-filtered source snapshot
 
 # One-time push trigger plus manual rerun. Standard runners are free for public repositories.
 on:
@@ -62,9 +62,20 @@ jobs:
           git checkout --orphan coolify-upstream-snapshot
           git read-tree --empty
           git read-tree --prefix=upstream/ "$UPSTREAM_TREE"
+          # GitHub push protection flagged upstream embedded SSH private keys
+          # in these test fixtures / seeders. Never bypass protection or copy them.
+          for file in \
+            database/seeders/PrivateKeySeeder.php \
+            tests/Feature/Api/CloudInitPublicBackupDeployAbilityTest.php \
+            tests/Feature/ApplicationHttpBasicAuthUiTest.php \
+            tests/Feature/Livewire/RailpackLivewireUiTest.php \
+            tests/Feature/TerminalAuthRoutesAuthorizationTest.php; do
+            git update-index --force-remove -- "upstream/$file"
+          done
           IMPORT_TREE="$(git write-tree)"
           SUBTREE="$(git rev-parse "$IMPORT_TREE:upstream")"
-          test "$SUBTREE" = "$UPSTREAM_TREE" || { echo "::error::Source subtree differs from upstream"; exit 1; }
+          test "$SUBTREE" != "$UPSTREAM_TREE"
+          printf '%s\n' "$SUBTREE" > ../FILTERED_TREE
           # Upstream is nested under upstream/; original file paths, including
           # upstream/.github/workflows, are data and are preserved unchanged.
           # Commit only the exact preverified index tree. The shallow checkout's
@@ -92,9 +103,11 @@ jobs:
           LOCAL_TREE="$(git rev-parse 'HEAD:upstream')"
           REMOTE_TREE="$(git rev-parse 'FETCH_HEAD:upstream')"
           test "${LOCAL_TREE}" = "${REMOTE_TREE}"
-          test "${REMOTE_TREE}" = "$(cat ../UPSTREAM_TREE)"
-          test "${REMOTE_TREE}" = "446804215dd79e0489396ee167bf60f185a0c8db"
+          test "${REMOTE_TREE}" = "$(cat ../FILTERED_TREE)"
+          test "$(cat ../UPSTREAM_TREE)" = "446804215dd79e0489396ee167bf60f185a0c8db"
           echo "Verified matching Git tree: ${REMOTE_TREE}"
           echo "Upstream source commit: $(cat ../UPSTREAM_COMMIT)"
-          echo "Source tracked-file count: $(cat ../UPSTREAM_TRACKED_FILE_COUNT)"
+          echo "Upstream tracked-file count: $(cat ../UPSTREAM_TRACKED_FILE_COUNT)"
+          echo "Retained tracked-file count: $(git ls-tree -r --name-only FETCH_HEAD:upstream | wc -l)"
+          echo "Five SSH-key-bearing fixture and seeder files excluded"
           echo "Imported branch: coolify-upstream-snapshot"
